@@ -1,0 +1,36 @@
+
+    public Criticals() {
+        super("Criticals", 0, Category.COMBAT);
+    }
+
+    @Override
+    public void setup() {
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Packet");
+        options.add("MiniJump");
+        Asyncware.instance.settingsManager.rSetting(new Setting("Criticals Mode", this, "Packet", options));
+    }
+
+    @EventTarget
+    public void onUpdate(EventUpdate event) {
+        String mode = Asyncware.instance.settingsManager.getSettingByName("Criticals Mode").getValString();
+        this.setDisplayName("Criticals");
+    }
+
+    @EventTarget
+    public void onSendPacket(EventSendPacket event) {
+        String mode = Asyncware.instance.settingsManager.getSettingByName("Criticals Mode").getValString();
+
+
+        if(mode.equalsIgnoreCase("Packet")) {
+
+
+        }
+        if(mode.equalsIgnoreCase("MiniJump")) {
+              mc.thePlayer.jump();
+              mc.thePlayer.motionY -= .30000001192092879;
+        }
+    }
+}
+
+
